@@ -20,7 +20,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-plate-foreground/10 bg-plate text-plate-foreground shadow-sm">
       <div className="container-site flex h-16 items-center justify-between gap-4 md:h-20">
-        <Logo className="h-9 md:h-12" />
+        <Logo className="h-12 md:h-16" />
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           <Link to="/" className={linkCls} activeProps={activeCls} activeOptions={{ exact: true }}>Home</Link>
           <div className="group relative" onMouseLeave={() => setSvc(false)}>
