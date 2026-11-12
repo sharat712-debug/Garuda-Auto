@@ -10,12 +10,54 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BookServiceRouteImport } from './routes/book-service'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FleetServicesRouteImport } from './routes/fleet-services'
+import { Route as OurMechanicRouteImport } from './routes/our-mechanic'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookServiceRoute = BookServiceRouteImport.update({
+  id: '/book-service',
+  path: '/book-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FleetServicesRoute = FleetServicesRouteImport.update({
+  id: '/fleet-services',
+  path: '/fleet-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurMechanicRoute = OurMechanicRouteImport.update({
+  id: '/our-mechanic',
+  path: '/our-mechanic',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -31,30 +73,89 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/book-service': typeof BookServiceRoute
+  '/contact': typeof ContactRoute
+  '/fleet-services': typeof FleetServicesRoute
+  '/our-mechanic': typeof OurMechanicRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms': typeof TermsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/book-service': typeof BookServiceRoute
+  '/contact': typeof ContactRoute
+  '/fleet-services': typeof FleetServicesRoute
+  '/our-mechanic': typeof OurMechanicRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms': typeof TermsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/book-service': typeof BookServiceRoute
+  '/contact': typeof ContactRoute
+  '/fleet-services': typeof FleetServicesRoute
+  '/our-mechanic': typeof OurMechanicRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms': typeof TermsRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/services/$slug' | '/services/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/book-service'
+    | '/contact'
+    | '/fleet-services'
+    | '/our-mechanic'
+    | '/privacy-policy'
+    | '/terms'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/services/$slug' | '/services'
-  id: '__root__' | '/' | '/services/$slug' | '/services/'
+  to:
+    | '/'
+    | '/about'
+    | '/book-service'
+    | '/contact'
+    | '/fleet-services'
+    | '/our-mechanic'
+    | '/privacy-policy'
+    | '/terms'
+    | '/services/$slug'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/book-service'
+    | '/contact'
+    | '/fleet-services'
+    | '/our-mechanic'
+    | '/privacy-policy'
+    | '/terms'
+    | '/services/$slug'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BookServiceRoute: typeof BookServiceRoute
+  ContactRoute: typeof ContactRoute
+  FleetServicesRoute: typeof FleetServicesRoute
+  OurMechanicRoute: typeof OurMechanicRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  TermsRoute: typeof TermsRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -66,6 +167,55 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book-service': {
+      id: '/book-service'
+      path: '/book-service'
+      fullPath: '/book-service'
+      preLoaderRoute: typeof BookServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fleet-services': {
+      id: '/fleet-services'
+      path: '/fleet-services'
+      fullPath: '/fleet-services'
+      preLoaderRoute: typeof FleetServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-mechanic': {
+      id: '/our-mechanic'
+      path: '/our-mechanic'
+      fullPath: '/our-mechanic'
+      preLoaderRoute: typeof OurMechanicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/': {
@@ -87,6 +237,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BookServiceRoute: BookServiceRoute,
+  ContactRoute: ContactRoute,
+  FleetServicesRoute: FleetServicesRoute,
+  OurMechanicRoute: OurMechanicRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  TermsRoute: TermsRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
