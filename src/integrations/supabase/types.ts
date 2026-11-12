@@ -14,16 +14,167 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_requests: {
+        Row: {
+          consent: boolean
+          contact_method: string | null
+          created_at: string
+          details: string
+          email: string
+          full_name: string
+          id: string
+          ip_hash: string | null
+          marketing_opt_in: boolean
+          phone: string
+          preferred_date: string | null
+          preferred_time: string | null
+          rego: string | null
+          service_type: string
+          source_page: string | null
+          status: Database["public"]["Enums"]["enquiry_status"]
+          vehicle_make: string
+          vehicle_model: string
+          vehicle_type: string | null
+          vehicle_year: number
+        }
+        Insert: {
+          consent?: boolean
+          contact_method?: string | null
+          created_at?: string
+          details: string
+          email: string
+          full_name: string
+          id?: string
+          ip_hash?: string | null
+          marketing_opt_in?: boolean
+          phone: string
+          preferred_date?: string | null
+          preferred_time?: string | null
+          rego?: string | null
+          service_type: string
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["enquiry_status"]
+          vehicle_make: string
+          vehicle_model: string
+          vehicle_type?: string | null
+          vehicle_year: number
+        }
+        Update: {
+          consent?: boolean
+          contact_method?: string | null
+          created_at?: string
+          details?: string
+          email?: string
+          full_name?: string
+          id?: string
+          ip_hash?: string | null
+          marketing_opt_in?: boolean
+          phone?: string
+          preferred_date?: string | null
+          preferred_time?: string | null
+          rego?: string | null
+          service_type?: string
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["enquiry_status"]
+          vehicle_make?: string
+          vehicle_model?: string
+          vehicle_type?: string | null
+          vehicle_year?: number
+        }
+        Relationships: []
+      }
+      fleet_enquiries: {
+        Row: {
+          business_name: string
+          consent: boolean
+          contact_person: string
+          created_at: string
+          email: string
+          id: string
+          ip_hash: string | null
+          message: string
+          phone: string
+          preferred_contact_time: string | null
+          source_page: string | null
+          status: Database["public"]["Enums"]["enquiry_status"]
+          vehicle_count: number | null
+          vehicle_types: string | null
+        }
+        Insert: {
+          business_name: string
+          consent?: boolean
+          contact_person: string
+          created_at?: string
+          email: string
+          id?: string
+          ip_hash?: string | null
+          message: string
+          phone: string
+          preferred_contact_time?: string | null
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["enquiry_status"]
+          vehicle_count?: number | null
+          vehicle_types?: string | null
+        }
+        Update: {
+          business_name?: string
+          consent?: boolean
+          contact_person?: string
+          created_at?: string
+          email?: string
+          id?: string
+          ip_hash?: string | null
+          message?: string
+          phone?: string
+          preferred_contact_time?: string | null
+          source_page?: string | null
+          status?: Database["public"]["Enums"]["enquiry_status"]
+          vehicle_count?: number | null
+          vehicle_types?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "staff"
+      enquiry_status:
+        | "new"
+        | "contacted"
+        | "quote_required"
+        | "booked"
+        | "completed"
+        | "closed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +301,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "staff"],
+      enquiry_status: [
+        "new",
+        "contacted",
+        "quote_required",
+        "booked",
+        "completed",
+        "closed",
+      ],
+    },
   },
 } as const
