@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- All business data (mode prelaunch/live, contact, services, FAQ, launch checklist) lives in `src/config/business.ts`; null values hide UI. Why: owner edits one place.
+- Enquiry forms insert via server functions in `src/lib/enquiries.functions.ts` (zod + honeypot + per-IP hourly limit, admin client); tables have no anon access, staff read via `is_staff()` RLS. Why: no public reads of customer data.

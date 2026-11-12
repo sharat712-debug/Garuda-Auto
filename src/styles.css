@@ -115,6 +115,6 @@
 }
 
 @utility hero-fade {
-  background: linear-gradient(90deg, var(--color-surface) 0%, color-mix(in oklab, var(--color-surface) 85%, transparent) 45%, transparent 100%),
-    linear-gradient(0deg, var(--color-surface) 0%, transparent 40%);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--color-surface) 92%, transparent) 0%, color-mix(in oklab, var(--color-surface) 55%, transparent) 50%, transparent 80%),
+    linear-gradient(0deg, var(--color-surface) 0%, transparent 25%);
 }
