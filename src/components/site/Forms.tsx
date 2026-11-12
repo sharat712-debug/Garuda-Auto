@@ -7,7 +7,7 @@ import { serviceTypeOptions } from "@/config/business";
 
 const inputCls = "mt-1.5 block w-full rounded-md border border-input bg-surface px-3.5 py-3 text-base text-foreground placeholder:text-steel focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/40 aria-[invalid=true]:border-destructive";
 
-function Field({ id, label, required, error, children, className = "" }: { id: string; label: string; required?: boolean; error?: string; children: ReactNode; className?: string }) {
+function Field({ id, label, required, error, children, className = "" }: { id: string; label: string; required?: boolean; error?: string | undefined; children: ReactNode; className?: string }) {
   return (
     <div className={className}>
       <label htmlFor={id} className="text-sm font-medium">
@@ -19,8 +19,9 @@ function Field({ id, label, required, error, children, className = "" }: { id: s
   );
 }
 
-type Errors = Record<string, string | undefined>;
-const a = (errors: Errors, k: string) => ({ "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `${k}-err` : undefined });
+type ErrKey = "fullName"|"phone"|"email"|"make"|"model"|"year"|"rego"|"vehicleType"|"serviceType"|"details"|"preferredDate"|"preferredTime"|"contactMethod"|"consent"|"businessName"|"contactPerson"|"vehicleCount"|"vehicleTypes"|"preferredContactTime"|"message";
+type Errors = Partial<Record<ErrKey, string>>;
+const a = (errors: Errors, k: ErrKey) => ({ "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `${k}-err` : undefined });
 
 function Success({ children }: { children: ReactNode }) {
   return (
@@ -61,7 +62,7 @@ function SubmitButton({ pending, children }: { pending: boolean; children: React
 
 function toErrors(issues: { path: (string | number)[]; message: string }[]): Errors {
   const e: Errors = {};
-  for (const i of issues) { const k = String(i.path[0]); if (!e[k]) e[k] = i.message; }
+  for (const i of issues) { const k = String(i.path[0]) as ErrKey; if (!e[k]) e[k] = i.message; }
   return e;
 }
 
