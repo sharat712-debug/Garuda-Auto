@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MessageSquareText, Clock3, ShieldCheck, UserRound } from "lucide-react";
 import hero from "@/assets/hero-workshop.jpg";
+import heroVideo from "@/assets/hero-garage.mp4.asset.json";
 import brakes from "@/assets/brakes-detail.jpg";
 import { business, isLive, services } from "@/config/business";
 import { seo } from "@/lib/seo";
@@ -40,7 +41,18 @@ function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden">
-        <img src={hero} alt="Illustrative image: an SUV raised on a workshop hoist while a technician reviews diagnostic data" width={1920} height={1088} className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]" />
+        <video
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={hero}
+          aria-label="Illustrative video: a mechanic inspecting an SUV raised on a workshop hoist"
+        >
+          <source src={heroVideo.url} type="video/mp4" />
+        </video>
         <div aria-hidden="true" className="hero-fade absolute inset-0 -z-10" />
         <div className="container-site flex min-h-[68vh] flex-col justify-center py-20">
           <p className="eyebrow">{live ? "Automotive servicing & repairs | Gold Coast" : "Coming soon to the Gold Coast"}</p>
