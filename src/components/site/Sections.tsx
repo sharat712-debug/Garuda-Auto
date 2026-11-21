@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { faqs, business, addressText, launchOffer, offerAvailable, type Question } from "@/config/business";
+import { faqs, business, addressText, launchOffer, offerAvailable, offerSummary, type Question } from "@/config/business";
 import { Button } from "@/components/ui/button";
 import { workshopMedia } from "@/config/workshop-media";
 
@@ -93,5 +93,5 @@ export function LocalWorkshop() {
 
 export function OfferBand() {
   if (!offerAvailable()) return null;
-  return <section className="border-y border-primary/40 bg-background py-12"><div className="container-site grid items-center gap-8 md:grid-cols-[1.5fr_1fr]"><div><p className="eyebrow">Black Friday oil-service offer</p><h2 className="mt-3 text-3xl font-bold">Oil & filter change — ${launchOffer.price} <span className="text-lg text-muted-foreground">including GST</span></h2><p className="mt-4 text-muted-foreground">Through {launchOffer.endLabel} · First {launchOffer.dailyLimit} customers each day. Includes up to {launchOffer.oilLitres} litres of suitable oil, an oil filter and standard labour.</p><p className="mt-2 text-sm text-muted-foreground">Subject to vehicle requirements and confirmed daily availability. Any extra oil or vehicle-specific costs are quoted before work. A request does not reserve a promotional place.</p></div><div className="md:justify-self-end"><PrimaryLink to="/book-service">Request the oil-service offer</PrimaryLink></div></div></section>;
+  return <section className="border-y border-primary/40 bg-background py-12"><div className="container-site grid items-center gap-8 md:grid-cols-[1.5fr_1fr]"><div><p className="eyebrow">Limited-time oil-service offer</p><h2 className="mt-3 text-3xl font-bold">{launchOffer.headline} — ${launchOffer.price} <span className="text-lg text-muted-foreground">including GST</span></h2><p className="mt-4 text-muted-foreground">{offerSummary()}</p><p className="mt-2 text-sm text-muted-foreground">Work beyond the package is quoted before proceeding. A request does not reserve a promotional place.</p></div><div className="md:justify-self-end"><PrimaryLink to="/book-service">Request the oil-service offer</PrimaryLink></div></div></section>;
 }

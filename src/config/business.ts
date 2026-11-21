@@ -29,7 +29,22 @@ export const business = {
 };
 export const isLive = () => business.mode === 'live';
 export const addressText = () => business.address ? `${business.address.street}, ${business.address.suburb} ${business.address.state} ${business.address.postcode}, Australia` : business.region;
-export const launchOffer = { price: 120, gstIncluded: true, oilLitres: 5, dailyLimit: 5, endDate: '2027-01-31', endLabel: '31 January 2027', approved: true };
+export const launchOffer = {
+  price: 120, gstIncluded: true, oilLitres: 5, additionalOilPerLitre: 9, additionalOilGstIncluded: true,
+  healthChecksIncluded: true, diagnosticScanReportIncluded: true, diagnosticScanReportPrice: 0,
+  dailyLimit: 5, endDate: '2027-01-31', endLabel: '31 January 2027', approved: true,
+  headline: 'Engine oil & filter service',
+  description: 'Give your engine the care it deserves without breaking the bank.',
+  tagline: 'Affordable Automotive Care. Quality You Can Trust.',
+};
+export const offerInclusions = () => [
+  `Engine oil replacement (up to ${launchOffer.oilLitres} litres)`,
+  'New engine oil filter',
+  ...(launchOffer.healthChecksIncluded ? ['Basic vehicle health and visual checks'] : []),
+  ...(launchOffer.diagnosticScanReportIncluded ? ['Complimentary promotional engine diagnostic scan report'] : []),
+  'Professional service and standard labour',
+];
+export const offerSummary = () => `The $${launchOffer.price} including GST promotional package includes ${offerInclusions().join(', ')}. Valid through ${launchOffer.endLabel}, for the first ${launchOffer.dailyLimit} customers each day. Additional engine oil is $${launchOffer.additionalOilPerLitre} per litre including GST. Vehicle suitability and daily availability are confirmed before booking.`;
 /** Calendar dates use the workshop's Queensland timezone; end day is inclusive. */
 export function offerAvailable(date = new Date()): boolean {
   const parts = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Brisbane', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date);
@@ -48,15 +63,17 @@ export const services: Service[] = [
   {
     slug: 'oil-filter-service', title: 'Engine Oil & Filter Changes', short: 'Petrol and eligible diesel oil and filter servicing, with vehicle-specific oil requirements checked first.', icon: 'wrench', status: 'available', photo: 'oil',
     intro: 'Looking for an affordable oil and filter change in Jimboomba? Garuda Automotive provides basic engine oil servicing for suitable petrol and diesel passenger vehicles at 9 Euphemia Street. We check the vehicle requirements before confirming the package and appointment.',
-    includes: ['Engine oil replacement', 'Oil filter replacement', 'Up to 5 litres of suitable oil in the launch package', 'Standard oil-change labour'],
-    note: 'The $120 including GST Black Friday offer runs through 31 January 2027, for the first five customers each day. Vehicle suitability and daily availability must be confirmed. Extra oil or vehicle-specific requirements are quoted before work.',
+    includes: offerInclusions(),
+    note: offerSummary(),
     seoTitle: 'Oil & Filter Change Jimboomba | Garuda Automotive', seoDescription: 'Request an oil and filter change in Jimboomba. Garuda Automotive checks oil specifications and vehicle suitability, with clear pricing before work begins.',
     sections: [
       { title: 'An oil change that suits your engine', paragraphs: ['Oil specification matters as much as the amount of oil used. Tell us your make, model, year, engine type and kilometres so we can check the correct oil and filter for your vehicle. Diesel servicing is subject to the engine’s requirements and parts availability.', 'A basic oil change is not the same as a complete manufacturer-scheduled logbook service. If your service schedule calls for additional filters, fluids or other work, we will discuss that separately rather than imply it is included in the introductory price.'] },
-      { title: 'Know the price before you book', paragraphs: ['The introductory package covers up to five litres of oil, an oil filter and standard service labour for suitable vehicles. Vehicles needing more oil or a different service scope may cost more. Ask for a vehicle-specific quote and mention the launch offer when enquiring.', approval] },
+      { title: 'Know the price before you book', paragraphs: [offerSummary(), 'The complimentary promotional engine diagnostic scan report records scan findings; it is not a full fault investigation or a guarantee that the vehicle is fault-free. Vehicle-specific work beyond the package is quoted separately.', approval] },
     ],
     questions: [
-      { q: 'What does the $120 oil change in Jimboomba include?', a: 'The approved launch package includes GST, up to five litres of suitable oil, an oil filter and standard oil-change labour. It is limited to the first five customers per day through 31 January 2027. We confirm vehicle eligibility, extra requirements and availability before booking.' },
+      { q: 'What does the $120 oil change in Jimboomba include?', a: offerSummary() },
+      { q: 'How much is extra engine oil above five litres?', a: `Additional engine oil is $${launchOffer.additionalOilPerLitre} per litre, including GST. We confirm the required oil quantity and specification for your vehicle before work.` },
+      { q: 'Is an engine diagnostic scan report included in the offer?', a: 'Yes. A complimentary promotional engine diagnostic scan report is included for eligible vehicles. A scan report is not a full repair diagnosis; any further investigation or repairs are discussed and quoted separately.' },
       { q: 'Can you change the oil in a diesel vehicle?', a: 'We accept basic diesel oil and filter enquiries, subject to the engine’s oil specification, filter requirements and workshop capability. Send your vehicle details first.' },
       { q: 'Does the oil change include a full logbook service?', a: 'No. Manufacturer-scheduled servicing may need additional tasks, parts or fluids. We check the service schedule and quote the appropriate work separately.' },
       { q: 'Can I reserve one of the five daily offer places online?', a: 'The form is a request, not a live availability calendar. Raja will confirm eligibility and whether a promotional place is available for your preferred day.' },
@@ -114,9 +131,9 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: 'automotive-electrical', title: 'Basic Electrical Fault Detection', short: 'Initial electrical fault detection and appropriate battery condition checks, with specialist work scoped separately.', icon: 'zap', status: 'available', photo: 'equipment',
-    intro: 'Electrical problems can affect starting, warning lights and everyday vehicle operation. Our initial Jimboomba service includes basic electrical fault detection and battery condition checks where appropriate. Advanced automotive electrical repairs will be introduced progressively.',
-    includes: ['Basic electrical symptom assessment', 'Compatible scanner fault detection', 'Battery condition checks where appropriate', 'Advice on further investigation requirements'],
+    slug: 'automotive-electrical', title: 'Minor Electrical Repairs & Fault Detection', short: 'Minor automotive electrical repairs, basic fault detection and appropriate battery checks, with vehicle and job scope confirmed first.', icon: 'zap', status: 'available', photo: 'equipment',
+    intro: 'Electrical problems can affect starting, warning lights and everyday vehicle operation. Our Jimboomba service includes minor automotive electrical repairs, basic electrical fault detection and battery condition checks where appropriate. The vehicle and repair scope are checked first; advanced automotive electrical repairs remain future capabilities.',
+    includes: ['Minor automotive electrical repairs within confirmed capability', 'Basic electrical symptom assessment', 'Compatible scanner fault detection', 'Battery condition checks where appropriate', 'Advice on further investigation requirements'],
     note: 'Battery replacement, specialist electrical repairs and high-voltage hybrid or EV work are not currently confirmed services.',
     seoTitle: 'Electrical Fault Detection Jimboomba | Garuda Automotive', seoDescription: 'Enquire about basic car electrical fault detection and appropriate battery checks in Jimboomba. Specialist repairs and replacement availability confirmed first.',
     sections: [
@@ -186,7 +203,7 @@ export const serviceTypeOptions = [...services.filter((s) => s.status === 'avail
 export const faqs = (): Question[] => [
   { q: 'Where is Garuda Automotive located?', a: `Our workshop is at ${addressText()}. We welcome customers from Jimboomba, Yarrabilba, Flagstone, Logan Village and surrounding Logan communities.` },
   { q: 'Is Garuda Automotive now open?', a: isLive() ? 'Yes, the workshop is now open. Contact us to confirm service suitability and an appointment. Operating hours and weekend availability are still being finalised.' : 'Workshop opening and appointment availability are still being finalised. Contact us for current details.' },
-  { q: 'What car services are available now?', a: 'Our initial focus is oil and filter changes, brake pad and rotor replacement, brake fluid work, basic vehicle health and tyre checks, and basic diagnostic or electrical fault detection. Vehicle suitability is checked before booking.' },
+  { q: 'What car services are available now?', a: 'Our focus is oil and filter changes, general servicing, brake pad and rotor replacement, brake fluid work, minor automotive electrical repairs, basic vehicle health and tyre checks, and basic diagnostic fault detection. Vehicle and repair suitability are checked before booking.' },
   { q: 'Can you service European cars and diesel vehicles?', a: 'We welcome Japanese, Korean, Australian and selected European vehicle enquiries, including BMW, Mercedes-Benz, Audi and Volkswagen. Petrol and basic diesel work depend on model, service requirements, parts and capability.' },
   { q: 'Do I receive a quote before additional repairs?', a: 'Yes. Additional repair work is quoted and needs your approval before it begins. Inspection or diagnostic charges are discussed in advance.' },
   { q: 'Are online booking requests confirmed immediately?', a: 'No. Raja checks the vehicle requirements, parts and workshop availability before confirming an appointment by phone, email or SMS.' },
@@ -195,7 +212,7 @@ export const faqs = (): Question[] => [
 export const pageQuestions = {
   about: [faqs()[0] as Question, faqs()[2] as Question, { q: 'What is Garuda Automotive’s approach to servicing?', a: 'Our focus is affordable preventative maintenance, clear explanations and customer approval before additional repairs. We confirm the vehicle and job scope rather than promise every type of repair.' }, { q: 'Are there real workshop photos on this site?', a: 'Yes. The workshop and equipment photographs were supplied by the business. The looping home-page video is illustrative AI-generated footage, not a recording of our premises or staff.' }],
   mechanic: [{ q: 'Who is the Head Mechanic at Garuda Automotive?', a: 'M Raja is the Head Mechanic and initially manages booking enquiries and customer communication.' }, { q: 'What qualifications does Raja have?', a: 'His supplied profile includes a Bachelor of Technology in Mechanical Engineering from Hindustan University, India, Certificate III in Automotive (Light Vehicle Mechanical Technology), Certificate IV in Automotive and a Diploma in Automotive.' }, { q: 'Does prior Volvo or Penske experience mean manufacturer authorisation?', a: 'No. Those names describe previous employment experience only; they do not indicate a dealership relationship, partnership or manufacturer authorisation for Garuda Automotive.' }],
-  booking: [faqs()[5] as Question, { q: 'What vehicle information should I provide?', a: 'Include make, model, year, registration, kilometres, service history where relevant, the work requested, warning-light details and preferred timing. Enter the odometer reading in the problem description.' }, { q: 'Can I request a same-day car service in Jimboomba?', a: 'You can ask, but same-day minor work depends on workshop availability, parts and job requirements. Call for time-sensitive requests; the form does not guarantee a same-day appointment.' }, { q: 'How do I request the $120 oil and filter offer?', a: 'Select Engine Oil & Filter Changes and mention the offer in your message. It includes GST and up to five litres of oil for suitable vehicles, through 31 January 2027, for the first five customers daily. We confirm eligibility and availability.' }],
+  booking: [faqs()[5] as Question, { q: 'What vehicle information should I provide?', a: 'Include make, model, year, registration, kilometres, service history where relevant, the work requested, warning-light details and preferred timing. Enter the odometer reading in the problem description.' }, { q: 'Can I request a same-day car service in Jimboomba?', a: 'You can ask, but same-day minor work depends on workshop availability, parts and job requirements. Call for time-sensitive requests; the form does not guarantee a same-day appointment.' }, { q: 'How do I request the $120 oil and filter offer?', a: `Select Engine Oil & Filter Changes and mention the offer in your message. ${offerSummary()}` }],
   contact: [{ q: 'How do I contact the Jimboomba workshop?', a: 'Call +61 402 576 869 or send the website enquiry form. Our address is 9 Euphemia Street, Jimboomba QLD 4280.' }, { q: 'What are the opening hours and weekend arrangements?', a: 'Operating hours and weekend availability are still being finalised. Please call to confirm a suitable time before visiting; we do not publish proposed hours as confirmed hours.' }, { q: 'Do you offer roadside assistance, towing or vehicle collection?', a: 'No. Roadside assistance, towing and pickup or drop-off are not currently offered.' }, { q: 'Can I contact Garuda by business email?', a: 'A business email address is still being confirmed. Please use the telephone number or website enquiry form meanwhile.' }],
   fleet: [services[7]?.questions[0] as Question, { q: 'Is a fleet maintenance agreement available now?', a: 'Formal fleet programmes are a potential future service. You can enquire about individual eligible vehicles, with scope, prices and appointments confirmed separately.' }, { q: 'What details help with a small business vehicle enquiry?', a: 'Provide your business name, contact details, number of vehicles, makes and models, typical kilometres and maintenance needs. Raja will discuss whether the current workshop scope is suitable.' }],
   terms: [{ q: 'Does submitting the form confirm my appointment?', a: 'No. An appointment is confirmed only after Garuda contacts you to agree the details.' }, { q: 'Can repairs be added without my approval?', a: 'No. Additional repair work needs your approval after the proposed work and price are explained.' }, { q: 'Do these terms remove my consumer rights?', a: 'No. Nothing in these draft terms excludes applicable Australian Consumer Law rights.' }],

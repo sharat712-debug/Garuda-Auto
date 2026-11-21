@@ -9,3 +9,7 @@
 - [x] Add the approved mechanic headshot.
 - [x] Add an image-led offer pop-up across pages after 10 seconds, once per session.
 - [x] Verify timing, session behaviour and desktop/mobile presentation.
+
+# Updated promotional details
+- [x] Update the promotion, oil-service information, booking answers and terms with included health checks, complimentary scan report and $9-per-litre additional oil.
+- [x] Verify the updated promotion and pricing rules on desktop and mobile.
