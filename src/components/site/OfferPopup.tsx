@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import { Button } from '@/components/ui/button';
 import { business, launchOffer, offerAvailable, offerInclusions } from '@/config/business';
 import oilServicePhoto from '@/assets/engine-oil-drain.jpeg.asset.json';
-import logo from '@/assets/garuda-logo.jpeg.asset.json';
+import logo from '@/assets/garuda-final-logo.jpeg.asset.json';
 import { createOfferSession } from '@/lib/offer-session';
 
 export function OfferPopup() {
