@@ -1,0 +1,22 @@
+import { describe, it, expect } from 'vitest';
+import { business, launchOffer, offerAvailable, services, serviceTypeOptions } from '@/config/business';
+describe('Owner-confirmed business rules', () => {
+  it('uses the registered singular name', () => expect(business.name).toBe('Garuda Automotive'));
+  it('uses the owner supplied ABN', () => expect(business.abn).toBe('56702908745'));
+  it('uses the confirmed workshop address', () => expect(business.address).toEqual({street:'9 Euphemia Street', suburb:'Jimboomba', state:'QLD', postcode:'4280'}));
+  it('uses the business phone', () => expect(business.phoneHref).toBe('+61402576869'));
+  it('shows the confirmed now-open status', () => expect(business.mode).toBe('live'));
+  it('does not publish proposed hours as confirmed', () => expect(business.openingHours).toBeNull());
+  it('sets the approved oil-change price to $120', () => expect(launchOffer.price).toBe(120));
+  it('includes GST in the approved offer', () => expect(launchOffer.gstIncluded).toBe(true));
+  it('includes up to five litres in the package', () => expect(launchOffer.oilLitres).toBe(5));
+  it('limits the offer to the first five customers daily', () => expect(launchOffer.dailyLimit).toBe(5));
+  it('ends the offer at the end of January 2027', () => expect(launchOffer.endDate).toBe('2027-01-31'));
+  it('keeps the last day inclusive in Queensland', () => expect(offerAvailable(new Date('2027-01-31T13:59:59Z'))).toBe(true));
+  it('hides the offer when February starts in Queensland', () => expect(offerAvailable(new Date('2027-01-31T14:00:00Z'))).toBe(false));
+  it('does not offer unapproved safety certificates', () => { expect(business.safetyCertificatesApproved).toBe(false); expect(serviceTypeOptions.some(s => /safety certificate/i.test(s))).toBe(false); });
+  it('keeps dedicated pre-purchase inspections enquiry-only', () => expect(services.find(s=>s.slug==='pre-purchase-inspections')?.status).toBe('enquiry'));
+  it('keeps fleet services enquiry-only', () => expect(services.find(s=>s.slug==='light-commercial-fleet')?.status).toBe('enquiry'));
+  it('does not advertise hybrid or EV services as opening services', () => expect(services.filter(s=>s.status==='available').map(s=>s.title).some(t=>/hybrid|\bEV\b/.test(t))).toBe(false));
+  it('does not invent a business email address', () => expect(business.email).toBeNull());
+});

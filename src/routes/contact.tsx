@@ -1,34 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
-import { business, isLive } from "@/config/business";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/site/Sections";
-import { BookingForm } from "@/components/site/Forms";
-
-export const Route = createFileRoute("/contact")({
-  head: () => seo("Contact Garuda Automotives | Gold Coast", "Have a question about a repair, a service that's due or an upcoming booking? Send Garuda Automotives an enquiry.", "/contact"),
-  component: Contact,
-});
-
-function Contact() {
-  const live = isLive();
-  return (
-    <>
-      <PageHero eyebrow="Contact" title="Contact Garuda Automotives.">
-        <p>Have a question about a repair, a service that's due or an upcoming booking? Send an enquiry and we'll get back to you.</p>
-      </PageHero>
-      <section className="py-16">
-        <div className="container-site grid gap-10 lg:grid-cols-[1fr_2fr]">
-          <aside className="space-y-5">
-            <div className="flex gap-3"><MapPin className="h-5 w-5 text-primary" aria-hidden="true" /><div><p className="font-semibold">Location</p><p className="text-muted-foreground">{live && business.address ? `${business.address.street}, ${business.address.suburb} QLD ${business.address.postcode}` : "Gold Coast, Queensland — workshop address to be announced."}</p></div></div>
-            {business.phone && business.phoneHref && <div className="flex gap-3"><Phone className="h-5 w-5 text-primary" aria-hidden="true" /><div><p className="font-semibold">Phone</p><a href={`tel:${business.phoneHref}`} className="text-muted-foreground hover:text-primary">{business.phone}</a></div></div>}
-            {business.email && <div className="flex gap-3"><Mail className="h-5 w-5 text-primary" aria-hidden="true" /><div><p className="font-semibold">Email</p><a href={`mailto:${business.email}`} className="text-muted-foreground hover:text-primary">{business.email}</a></div></div>}
-            {live && business.openingHours && <div className="flex gap-3"><Clock className="h-5 w-5 text-primary" aria-hidden="true" /><div><p className="font-semibold">Opening hours</p>{business.openingHours.map((h) => <p key={h.days} className="text-muted-foreground">{h.days}: {h.hours}</p>)}</div></div>}
-            {live && business.mapEmbedUrl && <iframe title="Workshop map" src={business.mapEmbedUrl} loading="lazy" className="aspect-square w-full rounded-xl border border-border" />}
-          </aside>
-          <BookingForm />
-        </div>
-      </section>
-    </>
-  );
-}
+import { createFileRoute } from '@tanstack/react-router';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { business, addressText, pageQuestions } from '@/config/business';
+import { seo } from '@/lib/seo';
+import { PageHero, PageFAQ, WorkshopPhoto } from '@/components/site/Sections';
+import { BookingForm } from '@/components/site/Forms';
+import { Button } from '@/components/ui/button';
+export const Route = createFileRoute('/contact')({ head: () => seo('Contact Garuda Automotive | 9 Euphemia Street, Jimboomba', 'Call +61 402 576 869 or request vehicle servicing at 9 Euphemia Street, Jimboomba QLD 4280. Confirm appointments and operating hours before visiting.', '/contact'), component: Contact });
+function Contact() { return <><PageHero eyebrow="Contact & directions" title="Contact Garuda Automotive."><p>Now open at 9 Euphemia Street, Jimboomba. Call to discuss your vehicle or send an enquiry with the work you need. Please confirm your appointment before visiting.</p></PageHero><section className="py-16"><div className="container-site grid gap-12 lg:grid-cols-2"><div className="space-y-6"><h2 className="text-3xl font-bold">Find our Jimboomba workshop.</h2><div className="flex gap-3"><MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" /><p>{addressText()}</p></div>{business.phone && business.phoneHref && <a href={`tel:${business.phoneHref}`} className="flex items-center gap-3 text-xl font-semibold"><Phone className="h-5 w-5 text-primary" />{business.phone}</a>}{business.email && <a href={`mailto:${business.email}`} className="flex gap-3"><Mail className="h-5 w-5 text-primary" />{business.email}</a>}<p className="text-muted-foreground">Operating hours and weekend availability are still being finalised. Call to agree a suitable time rather than rely on proposed opening hours.</p><p className="text-muted-foreground">The workshop welcomes customers from {business.serviceAreas.join(', ')} and surrounding communities where convenient.</p><Button asChild variant="outline"><a href={business.directionsUrl} target="_blank" rel="noopener noreferrer"><MapPin />Open location in Google Maps</a></Button><p className="text-sm text-muted-foreground">This opens an address search in Google Maps, not a verified Google Business Profile. Reviews and social links will be added when genuine profiles are available.</p></div><WorkshopPhoto name="exterior" eager /></div></section><section className="border-t border-border py-16"><div className="container-site grid gap-10 lg:grid-cols-[1fr_2fr]"><aside><h2 className="text-3xl font-bold">Send a vehicle enquiry.</h2><p className="mt-5 text-muted-foreground">Raja initially handles workshop enquiries. Include the make, model, year, kilometres and any symptoms or warning lights to help us check the available service.</p><p className="mt-5 text-muted-foreground">Submitting the form does not confirm an appointment or promotional place. We check parts, vehicle suitability and availability before agreeing the next step.</p><p className="mt-5 text-muted-foreground">Roadside assistance, towing and vehicle collection are not available. Do not wait for a website response if your vehicle has an immediate safety issue.</p></aside><BookingForm /></div></section><PageFAQ items={pageQuestions['contact']} title="Contact & visiting questions" /></>; }

@@ -3,7 +3,8 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { bookingSchema, fleetSchema, submitBooking, submitFleet } from "@/lib/enquiries.functions";
-import { serviceTypeOptions } from "@/config/business";
+import { business, serviceTypeOptions } from "@/config/business";
+import { Button } from "@/components/ui/button";
 
 const inputCls = "mt-1.5 block w-full rounded-md border border-input bg-surface px-3.5 py-3 text-base text-foreground placeholder:text-steel focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/40 aria-[invalid=true]:border-destructive";
 
@@ -45,7 +46,7 @@ function ConsentBox({ errors }: { errors: Errors }) {
     <div>
       <label className="flex items-start gap-3 text-sm">
         <input type="checkbox" name="consent" className="mt-1 h-5 w-5 accent-[var(--color-primary)]" {...a(errors, "consent")} />
-        <span>I agree to Garuda Automotives contacting me about this enquiry and handling my details as described in the <Link to="/privacy-policy" className="text-primary underline underline-offset-2">Privacy Policy</Link>. <span className="text-primary">*</span></span>
+        <span>I agree to {business.name} contacting me about this enquiry and handling my details as described in the <Link to="/privacy-policy" className="text-primary underline underline-offset-2">Privacy Policy</Link>. <span className="text-primary">*</span></span>
       </label>
       {errors.consent && <p id="consent-err" role="alert" className="mt-1.5 text-sm text-destructive">{errors.consent}</p>}
     </div>
@@ -54,9 +55,9 @@ function ConsentBox({ errors }: { errors: Errors }) {
 
 function SubmitButton({ pending, children }: { pending: boolean; children: ReactNode }) {
   return (
-    <button type="submit" disabled={pending} className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-4 font-semibold text-primary-foreground shadow-[var(--shadow-red)] transition hover:brightness-110 disabled:opacity-60 sm:w-auto">
+    <Button type="submit" disabled={pending} className="h-auto w-full whitespace-normal px-6 py-4 font-semibold sm:w-auto">
       {pending && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />} {pending ? "Sending…" : children}
-    </button>
+    </Button>
   );
 }
 
@@ -129,7 +130,7 @@ export function BookingForm() {
           </select>
         </Field>
         <Field id="details" label="Symptoms or work requested" required error={errors.details} className="md:col-span-2">
-          <textarea id="details" name="details" rows={5} placeholder="e.g. Squealing when braking, service due at 60,000 km…" className={inputCls} {...a(errors, "details")} />
+          <textarea id="details" name="details" rows={5} placeholder="Include your odometer reading, work requested, symptoms or warning lights. Mention the oil-service offer if requested." className={inputCls} {...a(errors, "details")} />
         </Field>
         <Field id="preferredDate" label="Preferred date (not a confirmed slot)" error={errors.preferredDate}><input id="preferredDate" name="preferredDate" type="date" className={inputCls} /></Field>
         <Field id="preferredTime" label="Preferred time of day" error={errors.preferredTime}>
@@ -150,7 +151,7 @@ export function BookingForm() {
         <ConsentBox errors={errors} />
         <label className="flex items-start gap-3 text-sm text-muted-foreground">
           <input type="checkbox" name="marketing" className="mt-1 h-5 w-5 accent-[var(--color-primary)]" />
-          <span>Optional: keep me updated about Garuda's opening and occasional service news.</span>
+          <span>Optional: keep me updated about Garuda's occasional service news and offers.</span>
         </label>
       </div>
       {formError && <p role="alert" className="rounded-md border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive">{formError}</p>}

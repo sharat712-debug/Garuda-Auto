@@ -1,24 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { FinalCta, PageHero } from "@/components/site/Sections";
-
-export const Route = createFileRoute("/about")({
-  head: () => seo("About Garuda Automotives | Gold Coast Workshop", "Garuda Automotives is a new automotive workshop being established on the Gold Coast, built around practical fault finding and clear communication.", "/about"),
-  component: About,
-});
-
-function About() {
-  return (
-    <>
-      <PageHero eyebrow="About" title="Automotive care built on expertise and trust." />
-      <section className="py-16">
-        <div className="container-site max-w-3xl space-y-6 text-lg text-muted-foreground">
-          <p>Garuda Automotives is a new automotive workshop being established on Queensland's Gold Coast. We're building a service experience around practical fault finding, thoughtful maintenance and clear communication.</p>
-          <p>Our aim is simple: help drivers understand their vehicles, make informed repair decisions and get back on the road with confidence.</p>
-          <p className="text-foreground">As we prepare to open, we're inviting local motorists and businesses to get in touch about their upcoming service needs.</p>
-        </div>
-      </section>
-      <FinalCta />
-    </>
-  );
-}
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { seo } from '@/lib/seo';
+import { business, pageQuestions } from '@/config/business';
+import { FinalCta, PageHero, PageFAQ, WorkshopPhoto, LocalWorkshop } from '@/components/site/Sections';
+export const Route = createFileRoute('/about')({ head: () => seo('About Garuda Automotive | Local Jimboomba Workshop', 'Meet Garuda Automotive, an owner-led Jimboomba workshop focused on affordable oil servicing, brake maintenance, basic inspections and clear repair advice.', '/about'), component: About });
+function About() { return <>
+  <PageHero eyebrow="About our workshop" title="Garuda Automotive, Jimboomba."><p>{business.tagline} Our workshop is now open, with a practical focus on affordable vehicle maintenance and straightforward advice.</p></PageHero>
+  <section className="py-16"><div className="container-site grid gap-12 lg:grid-cols-2 lg:items-center"><div className="space-y-5 text-lg text-muted-foreground"><h2 className="text-3xl font-bold text-foreground">Everyday maintenance. Informed decisions.</h2><p>Garuda Automotive is an owner-led automotive workshop at 9 Euphemia Street, Jimboomba. We are building our service around the work drivers need regularly: engine oil and filter changes, brake maintenance and basic vehicle health inspections.</p><p>Our approach begins with understanding the vehicle and the customer’s concern. We explain the proposed work, confirm the scope and discuss the cost. If an inspection identifies another repair, we ask for approval before proceeding.</p><p>Affordability does not mean treating every car the same. Oil requirements, service schedules and replacement parts vary, so we check the make, model and job before promising a package or appointment.</p></div><WorkshopPhoto name="interior" eager /></div></section>
+  <section className="border-y border-border bg-background py-16"><div className="container-site grid gap-10 md:grid-cols-3"><div><h2 className="text-2xl font-bold">A clear initial focus</h2><p className="mt-4 text-muted-foreground">Oil and filter servicing, brake pads and rotors, brake fluid work, basic tyre checks and diagnostic fault detection form our initial scope. We welcome suitable petrol and diesel vehicles, with selected European models assessed individually.</p><Link to="/services" className="mt-5 inline-block font-semibold text-primary">Explore current services →</Link></div><div><h2 className="text-2xl font-bold">Engineering meets practical work</h2><p className="mt-4 text-muted-foreground">Head Mechanic M Raja combines a mechanical engineering background with automotive qualifications and Australian industry experience. He initially manages both workshop enquiries and customer communication.</p><Link to="/our-mechanic" className="mt-5 inline-block font-semibold text-primary">Meet our Head Mechanic →</Link></div><div><h2 className="text-2xl font-bold">Growing capability responsibly</h2><p className="mt-4 text-muted-foreground">Our equipment includes a Launch professional diagnostic scanner, with workshop setup built around general servicing and brake work. More specialist services will be introduced as equipment, training and safety arrangements develop.</p><p className="mt-4 text-muted-foreground">We do not advertise future hybrid, EV, air-conditioning or engine-repair capabilities as available today.</p></div></div></section>
+  <section className="py-16"><div className="container-site grid gap-10 md:grid-cols-2"><WorkshopPhoto name="equipment" /><div><h2 className="text-3xl font-bold">Clear advice, not automatic extras.</h2><p className="mt-5 text-muted-foreground">We aim to help customers understand maintenance needs and potential safety concerns, including a simple digital inspection report as our process develops. Ask which reporting format is available for your appointment.</p><p className="mt-5 text-muted-foreground">We comply with applicable Australian Consumer Law requirements and relevant supplier or manufacturer parts warranties. We do not advertise a specific workmanship warranty period until its terms are formally established.</p><p className="mt-5 text-muted-foreground">The supplied logo remains our approved artwork. The business’s registered name is {business.name}, ABN {business.abn}.</p></div></div></section>
+  <LocalWorkshop /><PageFAQ items={pageQuestions['about']} title="About Garuda: common questions" /><FinalCta />
+</>; }

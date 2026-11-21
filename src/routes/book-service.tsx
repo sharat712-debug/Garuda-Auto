@@ -1,23 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { isLive } from "@/config/business";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/site/Sections";
-import { BookingForm } from "@/components/site/Forms";
-
-export const Route = createFileRoute("/book-service")({
-  head: () => seo("Request a Service Booking | Garuda Automotives Gold Coast", "Send Garuda Automotives your vehicle details and the work you need. We'll contact you to discuss availability and next steps.", "/book-service"),
-  component: Book,
-});
-
-function Book() {
-  return (
-    <>
-      <PageHero eyebrow={isLive() ? "Book a service" : "Early service enquiries"} title="Tell us about your vehicle. We'll take it from there.">
-        <p>Complete the short form and our team will get in touch to discuss the issue, availability and next steps. Your request is not a confirmed booking until Garuda contacts you.</p>
-      </PageHero>
-      <section className="py-16">
-        <div className="container-site max-w-4xl"><BookingForm /></div>
-      </section>
-    </>
-  );
-}
+import { createFileRoute } from '@tanstack/react-router';
+import { pageQuestions } from '@/config/business';
+import { seo } from '@/lib/seo';
+import { PageHero, PageFAQ, OfferBand } from '@/components/site/Sections';
+import { BookingForm } from '@/components/site/Forms';
+export const Route = createFileRoute('/book-service')({ head: () => seo('Request a Car Service in Jimboomba | Garuda Automotive', 'Request an oil change, brake service or basic diagnostic appointment in Jimboomba. Share vehicle details and preferred timing; Raja confirms availability directly.', '/book-service'), component: Book });
+function Book() { return <><PageHero eyebrow="Booking requests" title="Request a car service in Jimboomba."><p>Tell us your vehicle, what you need and your preferred timing. Raja checks suitability, parts and workshop availability before confirming your appointment by phone, email or SMS.</p></PageHero><OfferBand />
+<section className="py-16"><div className="container-site grid gap-10 lg:grid-cols-[1fr_2fr]"><aside><h2 className="text-2xl font-bold">Before your appointment</h2><ol className="mt-6 list-decimal space-y-5 pl-5 text-muted-foreground"><li>Share your make, model, year, registration and the work required. Include kilometres and any warning lights in the description.</li><li>We confirm the available service, parts and proposed cost. Some problems need an agreed diagnostic or inspection step first.</li><li>Wait for confirmation before bringing the vehicle to 9 Euphemia Street, Jimboomba. Your selected date is a preference, not a reserved slot.</li></ol><h3 className="mt-8 text-xl font-semibold">A quote before additional repairs</h3><p className="mt-4 text-muted-foreground">No additional repair work proceeds without your approval. Deposit requirements depend on the job and parts order, and are discussed where relevant.</p><p className="mt-5 text-muted-foreground">For time-sensitive requests, call +61 402 576 869. Same-day minor work is subject to availability; roadside assistance and towing are not offered.</p><p className="mt-5 text-sm text-muted-foreground">Payment methods and operating hours are still being finalised. Confirm these when arranging your visit.</p></aside><BookingForm /></div></section><PageFAQ items={pageQuestions['booking']} title="Booking a Jimboomba service" /></>; }

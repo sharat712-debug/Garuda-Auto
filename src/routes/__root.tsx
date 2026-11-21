@@ -84,9 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Garuda Automotives | Car Servicing & Repairs Gold Coast" },
-      { name: "description", content: "Garuda Automotives — a new automotive workshop on the Gold Coast for servicing, diagnostics and repairs." },
-      { property: "og:site_name", content: "Garuda Automotives" },
+      { property: "og:site_name", content: "Garuda Automotive" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

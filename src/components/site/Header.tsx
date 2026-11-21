@@ -21,7 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-plate-foreground/10 bg-plate text-plate-foreground shadow-sm">
       <div className="container-site flex h-16 items-center justify-between gap-4 md:h-20">
         <Logo className="h-12 md:h-16" />
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
           <Link to="/" className={linkCls} activeProps={activeCls} activeOptions={{ exact: true }}>Home</Link>
           <div className="group relative" onMouseLeave={() => setSvc(false)}>
             <button
@@ -51,18 +51,18 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           {business.phone && business.phoneHref && (
-            <a href={`tel:${business.phoneHref}`} className="hidden items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold md:inline-flex">
+            <a href={`tel:${business.phoneHref}`} className="hidden items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold xl:inline-flex">
               <Phone className="h-4 w-4" aria-hidden="true" /> {business.phone}
             </a>
           )}
           <Link to="/book-service" className="hidden rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-red)] transition hover:brightness-110 sm:inline-flex">Book a Service</Link>
-          <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+          <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-md xl:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
       {open && (
-        <nav aria-label="Mobile" className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border bg-surface text-foreground lg:hidden">
+        <nav aria-label="Mobile" className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border bg-surface text-foreground xl:hidden">
           <ul className="container-site space-y-1 py-4" onClick={() => setOpen(false)}>
             <li><Link to="/" className="block rounded-md px-3 py-3 font-medium hover:bg-accent">Home</Link></li>
             <li><Link to="/services" className="block rounded-md px-3 py-3 font-medium hover:bg-accent">Services</Link></li>

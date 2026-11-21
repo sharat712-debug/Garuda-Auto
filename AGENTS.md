@@ -31,3 +31,6 @@ use the editor.
 
 - All business data (mode prelaunch/live, contact, services, FAQ, launch checklist) lives in `src/config/business.ts`; null values hide UI. Why: owner edits one place.
 - Enquiry forms insert via server functions in `src/lib/enquiries.functions.ts` (zod + honeypot + per-IP hourly limit, admin client); tables have no anon access, staff read via `is_staff()` RLS. Why: no public reads of customer data.
+- Service availability, page questions and offer eligibility remain in the central business configuration; original media is mapped separately through asset pointers. Why: keep owner facts consistent without bundling binary media.
+- Offer expiry uses the workshop's local calendar date and inclusive final day; web requests never reserve daily promotional places. Why: prevent stale offers and false availability promises.
+- Public page metadata uses the shared SEO helper with self-referencing absolute URLs; only the home page declares the business entity. Why: avoid duplicate canonical links and conflicting local-business facts.

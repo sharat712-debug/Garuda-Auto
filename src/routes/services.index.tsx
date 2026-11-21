@@ -1,43 +1,14 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import { business, services } from "@/config/business";
-import { seo } from "@/lib/seo";
-import { FinalCta, PageHero } from "@/components/site/Sections";
-import { ServiceIcon } from "@/components/site/ServiceIcon";
-
-export const Route = createFileRoute("/services/")({
-  head: () => seo("Car Services Gold Coast | Garuda Automotives", "Servicing, diagnostics, brakes, suspension, auto electrical, pre-purchase inspections, tyres and light-commercial work — enquire with Garuda Automotives.", "/services"),
-  component: ServicesPage,
-});
-
-function ServicesPage() {
-  return (
-    <>
-      <PageHero eyebrow="Services" title="Vehicle servicing and repairs, explained clearly.">
-        <p>Tell us your vehicle and what you need. We'll confirm whether we can help and what the next step is before any work proceeds.</p>
-      </PageHero>
-      <section className="py-16">
-        <div className="container-site grid gap-4 md:grid-cols-2">
-          {services.map((s) => (
-            <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} className="group flex gap-5 rounded-xl border border-border bg-card p-6 transition hover:border-primary/60">
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary"><ServiceIcon name={s.icon} /></span>
-              <div>
-                <h2 className="text-xl font-semibold">{s.title}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">View service <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
-              </div>
-            </Link>
-          ))}
-          {!business.safetyCertificatesApproved && (
-            <div className="rounded-xl border border-dashed border-input p-6 md:col-span-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Upcoming · subject to approval</span>
-              <h2 className="mt-2 text-xl font-semibold">Queensland Safety Certificate Enquiries</h2>
-              <p className="mt-2 text-sm text-muted-foreground">We're reviewing this service as part of workshop setup. Safety certificates can only be issued by a Queensland Approved Inspection Station with appropriately approved examiners. This service cannot be booked yet.</p>
-            </div>
-          )}
-        </div>
-      </section>
-      <FinalCta />
-    </>
-  );
-}
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight } from 'lucide-react';
+import { services } from '@/config/business';
+import { seo } from '@/lib/seo';
+import { FinalCta, PageHero, PageFAQ, OfferBand, WorkshopPhoto } from '@/components/site/Sections';
+import { ServiceIcon } from '@/components/site/ServiceIcon';
+export const Route = createFileRoute('/services/')({ head: () => seo('Car Servicing & Brake Repairs Jimboomba | Garuda Automotive', 'Explore oil and filter changes, brake maintenance, basic vehicle checks and fault detection at Garuda Automotive, Jimboomba. Suitability confirmed before booking.', '/services'), component: ServicesPage });
+function ServicesPage() { return <>
+  <PageHero eyebrow="Current services" title="Car servicing & brake maintenance in Jimboomba."><p>Our initial focus is affordable preventative maintenance, basic inspections and fault detection. Tell us your make, model and work required; we confirm suitability, scope and price before proceeding.</p></PageHero><OfferBand />
+  <section className="py-16"><div className="container-site grid gap-4 md:grid-cols-2">{services.map(s => <Link key={s.slug} to="/services/$slug" params={{slug:s.slug}} className="group flex gap-5 rounded-lg border border-border bg-card p-6 transition hover:border-primary/60"><span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary/15 text-primary"><ServiceIcon name={s.icon} /></span><div><p className="mb-2 text-xs font-semibold uppercase text-muted-foreground">{s.status === 'available' ? 'Current service · vehicle suitability applies' : 'Enquiry only · scope to be confirmed'}</p><h2 className="text-xl font-semibold">{s.title}</h2><p className="mt-3 text-sm text-muted-foreground">{s.short}</p><span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">Service details <ArrowRight className="h-4 w-4" /></span></div></Link>)}</div></section>
+  <section className="border-y border-border bg-background py-16"><div className="container-site grid gap-12 md:grid-cols-2"><div><h2 className="text-3xl font-bold">Does the service suit your vehicle?</h2><p className="mt-5 text-muted-foreground">We welcome a broad range of Japanese, Korean and Australian vehicles, plus selected BMW, Mercedes-Benz, Audi and Volkswagen models. Acceptance depends on the vehicle, repair, parts and diagnostic capabilities.</p><p className="mt-5 text-muted-foreground">Petrol maintenance and suitable basic diesel oil services are our starting point. Manufacturer-specified servicing is available only where the technical information, correct oils, filters and procedures can be confirmed.</p><h3 className="mt-8 text-xl font-semibold">Not currently advertised as available</h3><p className="mt-4 text-muted-foreground">Hybrid and EV services, high-voltage repairs, air-conditioning work, battery replacement, timing belt or chain services and engine repairs are future expansions. Tyre fitting and alignment are unconfirmed. Queensland safety certificate inspections are not offered without the required authorisation.</p></div><WorkshopPhoto name="interior" /></div></section>
+  <section className="py-16"><div className="container-site max-w-4xl"><h2 className="text-3xl font-bold">A quote and your approval before extra repairs.</h2><p className="mt-5 text-lg text-muted-foreground">Describe the work you need and we’ll check the available appointment and parts. Some concerns need an agreed inspection or diagnostic step before a repair can be quoted. We explain those charges first and do not proceed with additional repairs without approval.</p><p className="mt-5 text-muted-foreground">Same-day minor work may be possible when the workshop, parts and job allow, but it is not guaranteed. Roadside assistance, towing and vehicle collection are not offered.</p></div></section>
+  <PageFAQ title="Choosing a car service in Jimboomba" /><FinalCta />
+</>; }

@@ -1,30 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { business } from "@/config/business";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/site/Sections";
-
-export const Route = createFileRoute("/terms")({
-  head: () => seo("Website Terms | Garuda Automotives", "Terms of use for the Garuda Automotives website and enquiry forms.", "/terms"),
-  component: Terms,
-});
-
-function Terms() {
-  return (
-    <>
-      <PageHero eyebrow="Legal" title="Website Terms" />
-      <section className="py-16">
-        <article className="container-site max-w-3xl space-y-6 text-muted-foreground [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-foreground">
-          <p className="rounded-lg border border-primary/50 bg-primary/10 p-4 text-sm text-foreground">Generic placeholder — must be reviewed by the business owner and a legal adviser before launch.</p>
-          <h2>Enquiries are not bookings</h2>
-          <p>Submitting a form on this website is a request only. A booking is confirmed only when {business.name} contacts you to confirm it.</p>
-          <h2>Information on this site</h2>
-          <p>Service descriptions are general information. The scope, price and availability of any work will be confirmed directly. Images are illustrative unless stated otherwise.</p>
-          <h2>Quotes</h2>
-          <p>Some work may require inspection or diagnostics before an accurate quote can be provided.</p>
-          <h2>Your rights</h2>
-          <p>Nothing in these terms limits your rights under the Australian Consumer Law.</p>
-        </article>
-      </section>
-    </>
-  );
-}
+import { createFileRoute } from '@tanstack/react-router';
+import { business, pageQuestions } from '@/config/business';
+import { seo } from '@/lib/seo';
+import { PageHero, PageFAQ } from '@/components/site/Sections';
+export const Route = createFileRoute('/terms')({ head: () => seo('Booking & Website Terms | Garuda Automotive Jimboomba', 'Garuda Automotive’s draft website terms explain booking requests, quotes, service availability, the oil-change offer and Australian Consumer Law rights.', '/terms'), component: Terms });
+function Terms() { return <><PageHero eyebrow="Website & booking information" title="Website Terms"><p>Service requests, quotes and information on the Garuda Automotive website.</p></PageHero><section className="py-16"><article className="container-site max-w-3xl space-y-6 text-muted-foreground [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-foreground"><p className="border-l-4 border-primary pl-4 text-sm text-foreground">Draft updated 21 November 2026 — owner and legal review required. These are not a final workshop service agreement.</p>
+<h2>Requests are not confirmed appointments</h2><p>Submitting a website form expresses a service request only. {business.name} checks vehicle requirements, parts and workshop availability before confirming an appointment by phone, email or SMS. A preferred date does not reserve a time or a promotional place.</p>
+<h2>Service suitability and availability</h2><p>The scope of work depends on your vehicle, the requested repair, parts and current workshop capability. We confirm that scope directly. Services described as future or enquiry-only are not promises of availability. Same-day minor work is subject to availability and is not guaranteed.</p><p>Roadside assistance, towing and pickup or drop-off are not currently offered. Hybrid, EV and high-voltage work are future capabilities. Queensland safety certificate inspections are not advertised or offered without the required authorisation.</p>
+<h2>Quotes and customer approval</h2><p>Inspection or diagnostic work may be needed before a repair can be quoted. Proposed charges are explained before proceeding. No additional repair work begins without your approval. Any deposit requirements depend on the job, parts ordering and repair value and are discussed where relevant.</p>
+<h2>Oil and filter introductory offer</h2><p>The approved Black Friday oil and filter offer is $120 including GST through 31 January 2027, limited to the first five customers each day. It includes up to five litres of suitable oil, an oil filter and standard service labour for eligible vehicles. Daily availability and vehicle eligibility are confirmed directly.</p><p>Extra oil or vehicle-specific service requirements can change the quote and must be agreed before work. This oil-change package is not automatically a full logbook service. No standard post-offer price is currently published.</p>
+<h2>Consumer rights and warranties</h2><p>Nothing in these terms excludes applicable rights under Australian Consumer Law. Applicable supplier or manufacturer parts warranties remain relevant. A specific workmanship warranty period and conditions have not yet been finalised, so no additional fixed warranty promise is made here.</p>
+<h2>Payments, website information and photographs</h2><p>Payment methods and financing arrangements are not confirmed on this website; ask when arranging your appointment. No buy-now-pay-later facility is advertised. Original workshop photos were supplied by the business. The home-page video is illustrative AI-generated footage, not a representation of our actual premises or staff.</p><p>General maintenance information is not a diagnosis or a guarantee that a vehicle is safe to drive. For immediate safety concerns, seek appropriate assistance rather than wait for a website enquiry response. Personal information is handled as described in our Privacy Policy.</p></article></section><PageFAQ items={pageQuestions['terms']} title="Quotes & booking questions" /></>; }

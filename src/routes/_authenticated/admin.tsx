@@ -1,3 +1,4 @@
+import { seo } from "@/lib/seo";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -7,7 +8,7 @@ import { business, launchChecklist } from "@/config/business";
 import type { Database } from "@/integrations/supabase/types";
 
 export const Route = createFileRoute("/_authenticated/admin")({
-  head: () => ({ meta: [{ title: "Enquiries admin | Garuda Automotives" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ ...seo("Enquiries admin | Garuda Automotive", "Private service and business vehicle enquiries for authorised Garuda staff.", "/admin"), meta: [...seo("Enquiries admin | Garuda Automotive", "Private service and business vehicle enquiries for authorised Garuda staff.", "/admin").meta, { name: "robots", content: "noindex" }] }),
   component: Admin,
 });
 

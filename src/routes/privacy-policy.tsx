@@ -1,36 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { business } from "@/config/business";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/site/Sections";
-
-export const Route = createFileRoute("/privacy-policy")({
-  head: () => seo("Privacy Policy | Garuda Automotives", "How Garuda Automotives collects, uses and stores personal information submitted through enquiry forms.", "/privacy-policy"),
-  component: Privacy,
-});
-
-function Privacy() {
-  return (
-    <>
-      <PageHero eyebrow="Legal" title="Privacy Policy" />
-      <section className="py-16">
-        <article className="container-site max-w-3xl space-y-6 text-muted-foreground [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-foreground">
-          <p className="rounded-lg border border-primary/50 bg-primary/10 p-4 text-sm text-foreground">Draft — requires review by the business owner and a legal adviser before launch.</p>
-          <h2>What we collect</h2>
-          <p>When you submit an enquiry we collect your name, phone number, email address, vehicle details (make, model, year, registration, type), the service requested, a description of the issue, preferred date and time, your preferred contact method and your consent choices. We also record when and from which page the enquiry was sent, and a one-way hashed network identifier used to prevent spam.</p>
-          <h2>Why we collect it</h2>
-          <p>To respond to your enquiry, discuss your vehicle's needs, arrange services and keep a record of our communication. If you opt in, we may also send occasional updates about our opening and services. You can opt out at any time.</p>
-          <h2>Storage and security</h2>
-          <p>Enquiries are stored with a secure cloud hosting provider and are accessible only to authorised Garuda staff.</p>
-          <h2>Retention</h2>
-          <p>We keep enquiry records only as long as reasonably needed for the purposes above or as required by law, after which they are deleted.</p>
-          <h2>Sharing</h2>
-          <p>We do not sell your information. We share it only with service providers who help us operate the website, store data or send emails, and only as needed for those services.</p>
-          <h2>Access and correction</h2>
-          <p>You can ask to access, correct or delete the personal information we hold about you by contacting us{business.email ? ` at ${business.email}` : " through our contact page"}.</p>
-          <h2>Contact</h2>
-          <p>{business.name}, {business.region}.</p>
-        </article>
-      </section>
-    </>
-  );
-}
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { business, addressText, pageQuestions } from '@/config/business';
+import { seo } from '@/lib/seo';
+import { PageHero, PageFAQ } from '@/components/site/Sections';
+export const Route = createFileRoute('/privacy-policy')({ head: () => seo('Privacy Policy | Garuda Automotive Jimboomba', 'How Garuda Automotive handles service and fleet enquiries, visitor analytics and staff sign-in information. Contact the Jimboomba workshop about your data.', '/privacy-policy'), component: Privacy });
+function Privacy() { return <><PageHero eyebrow="Privacy" title="Privacy Policy"><p>How Garuda Automotive handles website enquiries and information used to operate this site.</p></PageHero><section className="py-16"><article className="container-site max-w-3xl space-y-6 text-muted-foreground [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-foreground"><p className="border-l-4 border-primary pl-4 text-sm text-foreground">Draft updated 21 November 2026 — requires review by the business owner and a legal adviser.</p>
+<h2>Who we are</h2><p>{business.name}, ABN {business.abn}, {addressText()}. Call {business.phone} or use our <Link to="/contact" className="text-primary underline">contact page</Link> for privacy enquiries.</p>
+<h2>Information in service and business enquiries</h2><p>We collect the details you submit: name, phone, email, vehicle make, model, year, registration and type; requested service, description, preferred timing, preferred contact method and consent choices. If you include kilometres or other vehicle information in the description, that is stored with the enquiry. Business vehicle enquiries also include the business name, contact person, number and types of vehicles, preferred contact time and message.</p><p>The website records the submission time and source page. A one-way hashed network identifier and short-lived rate-limit records help prevent spam and repeated submissions. Do not include payment-card details or other sensitive information in a form.</p>
+<h2>How enquiries are used and stored</h2><p>We use these details to respond, check vehicle requirements, arrange an appointment and keep a record of the enquiry. Records are stored through Lovable Cloud and accessed by authorised Garuda staff. The owner and Head Mechanic initially manage customer communication. Automatic owner email notifications are not currently configured.</p><p>Marketing consent is optional and unchecked by default. If you opt in, we may use your details for service news and offers. You can ask to stop those communications at any time.</p><p>Enquiry records are kept as reasonably needed for these purposes and applicable record-keeping requirements. We do not publish customer enquiry details or sell them. Service providers involved in hosting, storage and website operation receive information needed to deliver those services.</p>
+<h2>Visitor analytics</h2><p>Lovable’s visitor analytics uses no cookies, stores nothing on your device, does not keep IP addresses and does not identify visitors. Lovable collects this data for us. <a href="https://lovable.dev/privacy" className="text-primary underline">Lovable’s privacy policy</a> explains how it handles it.</p><p>With the current site settings and no consent banner, clicks on buttons and links are recorded for every visitor. Page visits, referral sources, country, browser, operating system, device type, time on page, page speed and errors are also recorded for every visitor, without cookies and without identifying anyone. Error reports may be sent by the website’s error-reporting code. Detailed analytics is kept for 90 days and daily summaries for one year.</p>
+<h2>Staff sign-in and external services</h2><p>Staff sign-in uses Lovable Cloud authentication. Email and account information are handled by that service; the browser stores session information to keep staff signed in. This is separate from cookie-free visitor analytics.</p><p>The site loads fonts from Google Fonts, which receives network request information such as the browser’s IP address when fonts are requested. The Google Maps link opens an external address search only when clicked; Google then handles that visit under its own privacy policy. We do not currently embed a map, ad pixels or social feeds.</p>
+<h2>Access, correction and questions</h2><p>Contact the workshop to request access to, correction of or deletion of enquiry details, subject to any applicable retention requirements. We may need to verify that the request concerns your information. This draft describes current website features; it will need updating when services, notifications or integrations change.</p></article></section><PageFAQ items={pageQuestions['privacy']} title="Privacy questions" /></>; }

@@ -1,9 +1,10 @@
+import { seo } from "@/lib/seo";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "Staff sign in | Garuda Automotives" }, { name: "description", content: "Staff sign in for Garuda Automotives." }, { property: "og:title", content: "Staff sign in | Garuda Automotives" }, { property: "og:description", content: "Staff sign in for Garuda Automotives." }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ ...seo("Staff sign in | Garuda Automotive", "Authorised staff access for Garuda Automotive enquiry management.", "/auth"), meta: [...seo("Staff sign in | Garuda Automotive", "Authorised staff access for Garuda Automotive enquiry management.", "/auth").meta, { name: "robots", content: "noindex" }] }),
   component: AuthPage,
 });
 

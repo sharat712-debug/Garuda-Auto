@@ -1,25 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { seo } from "@/lib/seo";
-import { PageHero } from "@/components/site/Sections";
-import { FleetForm } from "@/components/site/Forms";
-
-export const Route = createFileRoute("/fleet-services")({
-  head: () => seo("Fleet Servicing Gold Coast | Garuda Automotives", "Small business and light-commercial fleet servicing enquiries on the Gold Coast. Tell Garuda Automotives about your vehicles and needs.", "/fleet-services"),
-  component: Fleet,
-});
-
-function Fleet() {
-  return (
-    <>
-      <PageHero eyebrow="Fleet services" title="Keep your business moving.">
-        <p>Your vehicles help your business run. Share your fleet size, makes and models, typical mileage and servicing needs. We can discuss practical maintenance and repair support for eligible light-commercial vehicles.</p>
-      </PageHero>
-      <section className="py-16">
-        <div className="container-site max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold">Request a Fleet Consultation</h2>
-          <FleetForm />
-        </div>
-      </section>
-    </>
-  );
-}
+import { createFileRoute } from '@tanstack/react-router';
+import { seo } from '@/lib/seo';
+import { pageQuestions } from '@/config/business';
+import { PageHero, PageFAQ, WorkshopPhoto } from '@/components/site/Sections';
+import { FleetForm } from '@/components/site/Forms';
+export const Route = createFileRoute('/fleet-services')({ head: () => seo('Small Business Vehicle Enquiries Jimboomba | Garuda Automotive', 'Discuss routine maintenance for eligible utes, vans and small business vehicles at Garuda Automotive in Jimboomba. Formal fleet plans are a future opportunity.', '/fleet-services'), component: Fleet });
+function Fleet() { return <><PageHero eyebrow="Business vehicle enquiries" title="Routine maintenance for your work vehicle."><p>Local tradespeople and small businesses can enquire about suitable oil servicing, brake maintenance and basic vehicle checks. Formal fleet programmes, rates and agreements are a future opportunity, not a confirmed current package.</p></PageHero><section className="py-16"><div className="container-site grid gap-12 md:grid-cols-2 md:items-center"><div><h2 className="text-3xl font-bold">Start with the work you need.</h2><p className="mt-5 text-muted-foreground">A work ute, delivery van or small company car needs a maintenance plan suited to its use. Share the vehicle makes, models, years, typical kilometres and next service requirements so we can assess what our initial workshop scope can support.</p><p className="mt-5 text-muted-foreground">Oil and filter servicing for suitable petrol and diesel vehicles, brake pads and rotors, brake fluid work and basic inspections are our starting point. Vehicle size, parts and available equipment are checked before acceptance.</p><p className="mt-5 text-muted-foreground">We welcome Jimboomba, Logan Village, Yarrabilba, Flagstone and surrounding business communities. This does not mean guaranteed priority access, fixed fleet discounts, heavy-vehicle repair capability or a promised turnaround time.</p></div><WorkshopPhoto name="exterior" /></div></section><section className="border-t border-border py-16"><div className="container-site grid gap-10 lg:grid-cols-[1fr_2fr]"><div><h2 className="text-3xl font-bold">Discuss your vehicles.</h2><p className="mt-5 text-muted-foreground">Raja initially manages business enquiries. Include your fleet size, types of vehicles and any maintenance concerns. Appointments and prices are confirmed by vehicle and job.</p><p className="mt-5 text-muted-foreground">Additional repairs need your approval. Pickup, drop-off, towing and roadside assistance are not offered. Ongoing service agreements will be considered as capacity develops.</p></div><FleetForm /></div></section><PageFAQ items={pageQuestions['fleet']} title="Business vehicle maintenance questions" /></>; }
