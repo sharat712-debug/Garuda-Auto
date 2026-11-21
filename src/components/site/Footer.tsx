@@ -39,7 +39,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container-site mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row md:justify-between">
-        <p>© {new Date().getFullYear()} {business.name}. Original workshop photos; home video is AI-generated and illustrative.</p>
+        <p>© {new Date().getFullYear()} {business.name}. Original workshop photos.</p>
         <div className="flex gap-4">
           <Link to="/privacy-policy" className="hover:text-primary">Privacy Policy</Link>
           <Link to="/terms" className="hover:text-primary">Terms</Link>
