@@ -4,3 +4,8 @@
 - [x] Update page metadata, structured data, internal links and sitemap.
 - [x] Validate page rendering, contact paths and business-rule tests.
 - [x] Set confirmed “Now open” status and approved $120 GST-inclusive offer ending 31 January 2027 (first five daily).
+
+# Mechanic photo and offer pop-up
+- [x] Add the approved mechanic headshot.
+- [x] Add an image-led offer pop-up across pages after 10 seconds, once per session.
+- [x] Verify timing, session behaviour and desktop/mobile presentation.

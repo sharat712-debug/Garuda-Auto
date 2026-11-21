@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, MobileCtaBar } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { OfferPopup } from "@/components/site/OfferPopup";
 
 function NotFoundComponent() {
   return (
@@ -133,6 +134,7 @@ function RootComponent() {
       <Footer />
       <MobileCtaBar />
       <Toaster />
+      <OfferPopup />
     </QueryClientProvider>
   );
 }

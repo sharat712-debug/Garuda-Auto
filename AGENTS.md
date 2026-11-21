@@ -34,3 +34,4 @@ use the editor.
 - Service availability, page questions and offer eligibility remain in the central business configuration; original media is mapped separately through asset pointers. Why: keep owner facts consistent without bundling binary media.
 - Offer expiry uses the workshop's local calendar date and inclusive final day; web requests never reserve daily promotional places. Why: prevent stale offers and false availability promises.
 - Public page metadata uses the shared SEO helper with self-referencing absolute URLs; only the home page declares the business entity. Why: avoid duplicate canonical links and conflicting local-business facts.
+- Promotional pop-ups mount once in the root layout, use tab-scoped sessionStorage with a memory fallback, and restart their delay on page navigation. Why: consistent timing without repeat interruptions or stale offer claims.

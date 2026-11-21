@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MessageSquareText, Clock3, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, MessageSquareText, Clock3, ShieldCheck } from "lucide-react";
+import rajaPortrait from '@/assets/raja-headshot.jpeg.asset.json';
 import hero from "@/assets/hero-workshop.jpg";
 import heroVideo from "@/assets/hero-garage.mp4.asset.json";
 
@@ -124,9 +125,7 @@ function Home() {
 
       <section className="py-20">
         <div className="container-site grid gap-10 md:grid-cols-[280px_1fr] md:items-center">
-          <div className="flex aspect-[4/5] items-center justify-center rounded-xl border border-border bg-card text-steel" role="img" aria-label="Portrait coming soon">
-            <UserRound className="h-24 w-24" aria-hidden="true" />
-          </div>
+          <img src={rajaPortrait.url} alt="M Raja, Head Mechanic at Garuda Automotive in Jimboomba" width={768} height={1024} loading="lazy" className="aspect-[3/4] w-full max-w-sm rounded-lg border border-border object-cover" />
           <div>
             <p className="eyebrow">Our mechanic</p>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">Meet the mechanic behind the work.</h2>
