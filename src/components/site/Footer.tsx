@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { business, isLive, services } from "@/config/business";
+import { GoogleMapEmbed } from "@/components/site/GoogleMapEmbed";
 
 export function Footer() {
   return (
@@ -36,6 +37,9 @@ export function Footer() {
             {business.email && <li><a href={`mailto:${business.email}`} className="hover:text-primary">{business.email}</a></li>}
             <li><Link to="/contact" className="hover:text-primary">Send an enquiry</Link></li>
           </ul>
+          <div className="mt-4">
+            <GoogleMapEmbed className="h-44" />
+          </div>
         </div>
       </div>
       <div className="container-site mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row md:justify-between">
