@@ -23,7 +23,7 @@ export const business = {
   mechanic: {
     name: 'M Raja', title: 'Head Mechanic',
     statement: 'My approach to automotive servicing is built around safety, transparency and reliability. With a background in mechanical engineering and practical automotive experience, I believe every vehicle deserves proper inspection and maintenance. At Garuda Automotive, our goal is to provide honest advice; affordable servicing and quality workmanship, helping customers understand their vehicles and make confident maintenance decisions.',
-    qualifications: ['Bachelor of Technology in Mechanical Engineering — Hindustan University, India', 'Certificate III in Automotive (Light Vehicle Mechanical Technology)', 'Certificate IV in Automotive', 'Diploma in Automotive'],
+    qualifications: ['Bachelor of Technology in Mechanical Engineering, Hindustan University, India', 'Certificate III in Automotive (Light Vehicle Mechanical Technology)', 'Certificate IV in Automotive', 'Diploma in Automotive'],
     previousEmployers: ['Volvo Group Australia', 'Penske Commercial'],
   },
 };

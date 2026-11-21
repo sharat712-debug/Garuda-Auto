@@ -87,7 +87,7 @@ function Admin() {
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <div className="rounded-lg border border-border bg-card p-4 text-sm">
           <p className="font-semibold">Site mode: <span className="text-primary">{business.mode === "live" ? "Live" : "Pre-launch"}</span></p>
-          <p className="mt-1 text-muted-foreground">Email notifications: {business.emailNotificationsConfigured ? "configured" : "configuration required — a verified sending domain is needed. Enquiries are still saved here."}</p>
+          <p className="mt-1 text-muted-foreground">Email notifications: {business.emailNotificationsConfigured ? "configured" : "configuration required; a verified sending domain is needed. Enquiries are still saved here."}</p>
         </div>
         <details className="rounded-lg border border-border bg-card p-4 text-sm">
           <summary className="cursor-pointer font-semibold">Pre-launch checklist ({launchChecklist.length} items to confirm)</summary>
@@ -109,7 +109,7 @@ function Admin() {
           <div key={r.id} className="rounded-lg border border-border bg-card p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="font-semibold">{"full_name" in r ? r.full_name : `${r.business_name} — ${r.contact_person}`}</p>
+                <p className="font-semibold">{"full_name" in r ? r.full_name : `${r.business_name} (${r.contact_person})`}</p>
                 <p className="text-sm text-muted-foreground">{r.phone} · {r.email} · {new Date(r.created_at).toLocaleString("en-AU")}</p>
               </div>
               <div className="flex items-center gap-2">

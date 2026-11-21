@@ -9,7 +9,7 @@ export function Footer() {
         <div className="md:col-span-1">
           <p className="font-display text-xl font-bold">GARUDA <span className="text-primary">//</span></p>
           <p className="mt-3 text-sm text-muted-foreground">
-            {isLive() ? "Automotive servicing & repairs" : "Opening soon"} — {business.region}.
+            {isLive() ? "Automotive servicing & repairs" : "Opening soon"}, {business.region}.
           </p>
           {business.abn && <p className="mt-2 text-xs text-muted-foreground">ABN {business.abn}</p>}
         </div>
