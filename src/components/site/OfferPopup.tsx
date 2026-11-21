@@ -4,7 +4,7 @@ import { ArrowRight, Check, Phone } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { business, launchOffer, offerAvailable, offerInclusions } from '@/config/business';
-import { workshopMedia } from '@/config/workshop-media';
+import oilServicePhoto from '@/assets/engine-oil-drain.jpeg.asset.json';
 import logo from '@/assets/garuda-logo.jpeg.asset.json';
 import { createOfferSession } from '@/lib/offer-session';
 
@@ -24,7 +24,7 @@ export function OfferPopup() {
     <DialogContent className="max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-3xl gap-0 overflow-y-auto rounded-lg border-border p-0">
       <div className="grid sm:grid-cols-[0.85fr_1.15fr]">
         <div className="relative min-h-36 overflow-hidden bg-surface sm:min-h-full">
-          <img src={workshopMedia.hoist.url} alt={workshopMedia.hoist.alt} className="absolute inset-0 h-full w-full object-cover" />
+          <img src={oilServicePhoto.url} alt="Engine oil draining into a workshop oil collector beneath a raised vehicle" className="absolute inset-0 h-full w-full object-cover object-[center_20%] sm:object-center" />
           <div className="absolute inset-0 bg-surface/35" aria-hidden="true" />
           <div className="relative m-5 w-40 rounded-sm bg-plate p-2 sm:m-6 sm:w-44"><img src={logo.url} alt={business.name} className="w-full" /></div>
           <div className="absolute inset-x-0 bottom-0 hidden border-t-4 border-primary bg-surface/95 p-6 sm:block">
