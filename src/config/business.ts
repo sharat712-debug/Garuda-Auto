@@ -18,7 +18,7 @@ export const business = {
   social: { facebook: null as string | null, instagram: null as string | null },
   safetyCertificatesApproved: false,
   mechanicConsentGiven: true,
-  emailNotificationsConfigured: false,
+  emailNotificationsConfigured: true,
   serviceAreas: ['Jimboomba', 'Yarrabilba', 'Flagstone', 'Logan Village', 'Greenbank', 'New Beith', 'Park Ridge', 'Regents Park', 'Browns Plains', 'North Maclean', 'Mundoolun'],
   mechanic: {
     name: 'M Raja', title: 'Head Mechanic',

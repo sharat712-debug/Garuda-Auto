@@ -5,7 +5,6 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import { Button } from '@/components/ui/button';
 import { business, launchOffer, offerAvailable, offerInclusions } from '@/config/business';
 import oilServicePhoto from '@/assets/engine-oil-drain.jpeg.asset.json';
-import logo from '@/assets/garuda-final-logo.jpeg.asset.json';
 import { createOfferSession } from '@/lib/offer-session';
 
 export function OfferPopup() {
@@ -26,7 +25,7 @@ export function OfferPopup() {
         <div className="relative min-h-36 overflow-hidden bg-surface sm:min-h-full">
           <img src={oilServicePhoto.url} alt="Engine oil draining into a workshop oil collector beneath a raised vehicle" className="absolute inset-0 h-full w-full object-cover object-[center_20%] sm:object-center" />
           <div className="absolute inset-0 bg-surface/35" aria-hidden="true" />
-          <div className="relative m-5 w-40 rounded-sm bg-plate p-2 sm:m-6 sm:w-44"><img src={logo.url} alt={business.name} className="w-full" /></div>
+          <div className="relative m-5 w-40 rounded-sm bg-plate p-2 sm:m-6 sm:w-44"><img src="/garuda-logo.png" alt={business.name} className="w-full" /></div>
           <div className="absolute inset-x-0 bottom-0 hidden border-t-4 border-primary bg-surface/95 p-6 sm:block">
             <p className="font-display text-xl font-bold">{launchOffer.tagline}</p>
             <p className="mt-2 text-sm text-muted-foreground">Jimboomba · Now open</p>

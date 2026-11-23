@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MessageSquareText, Clock3, ShieldCheck } from "lucide-react";
 import rajaPortrait from '@/assets/raja-headshot.jpeg.asset.json';
 import hero from "@/assets/hero-workshop.jpg";
-import heroVideo from "@/assets/hero-garage.mp4.asset.json";
 
 import { business, isLive, services } from "@/config/business";
 import { seo, structuredData } from "@/lib/seo";
@@ -49,7 +48,7 @@ function Home() {
           poster={hero}
           aria-label="AI-generated illustrative workshop video; not Garuda premises or staff"
         >
-          <source src={heroVideo.url} type="video/mp4" />
+          <source src="/hero-garage.mp4" type="video/mp4" />
         </video>
         <div aria-hidden="true" className="hero-fade absolute inset-0 -z-10" />
         <div className="container-site flex min-h-[min(68vh,640px)] flex-col justify-center py-20">

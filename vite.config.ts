@@ -9,7 +9,14 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Local `npm run dev` does not run inside Lovable's sandbox, so hosted
+// workshop media (logo, hero video, photos) 404 unless this preview host is set.
+process.env.LOVABLE_PREVIEW_HOST ??=
+  "id-preview--54699dd6-4c80-4e1c-96d3-1ee4e07ef64e.lovable.app";
+
 export default defineConfig({
+  // Lovable builds keep their own Cloudflare preset. This pin is for Vercel.
+  nitro: { preset: "vercel" },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this

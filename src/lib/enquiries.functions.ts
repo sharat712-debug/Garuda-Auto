@@ -66,6 +66,27 @@ export const submitBooking = createServerFn({ method: "POST" })
       source_page: data.sourcePage ?? null, ip_hash: hash,
     });
     if (error) { console.error("booking insert failed", error); return { ok: false as const, error: "We couldn't save your enquiry. Please try again." }; }
+    const { sendEnquiryEmail } = await import("@/lib/enquiry-email.server");
+    await sendEnquiryEmail({
+      subject: `New booking enquiry — ${data.fullName} — ${data.serviceType}`,
+      eyebrow: "Booking enquiry",
+      replyTo: data.email,
+      lines: [
+        ["Name", data.fullName],
+        ["Phone", data.phone],
+        ["Email", data.email],
+        ["Vehicle", `${data.year} ${data.make} ${data.model}`],
+        ["Type", data.vehicleType],
+        ["Rego", data.rego],
+        ["Service", data.serviceType],
+        ["Details", data.details],
+        ["Preferred date", data.preferredDate],
+        ["Preferred time", data.preferredTime],
+        ["Contact by", data.contactMethod],
+        ["Marketing opt-in", data.marketing ? "Yes" : "No"],
+        ["Page", data.sourcePage],
+      ],
+    });
     return { ok: true as const };
   });
 
@@ -85,5 +106,22 @@ export const submitFleet = createServerFn({ method: "POST" })
       source_page: data.sourcePage ?? null, ip_hash: hash,
     });
     if (error) { console.error("fleet insert failed", error); return { ok: false as const, error: "We couldn't save your enquiry. Please try again." }; }
+    const { sendEnquiryEmail } = await import("@/lib/enquiry-email.server");
+    await sendEnquiryEmail({
+      subject: `New fleet enquiry — ${data.businessName}`,
+      eyebrow: "Fleet enquiry",
+      replyTo: data.email,
+      lines: [
+        ["Business", data.businessName],
+        ["Contact", data.contactPerson],
+        ["Phone", data.phone],
+        ["Email", data.email],
+        ["Vehicles", data.vehicleCount],
+        ["Vehicle types", data.vehicleTypes],
+        ["Preferred contact time", data.preferredContactTime],
+        ["Message", data.message],
+        ["Page", data.sourcePage],
+      ],
+    });
     return { ok: true as const };
   });
