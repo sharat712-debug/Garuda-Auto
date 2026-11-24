@@ -70,7 +70,6 @@ function Home() {
               <SecondaryLink to="/services">Explore Our Services</SecondaryLink>
             )}
           </div>
-          <p className="mt-6 text-xs text-muted-foreground">Illustrative AI-generated video · Original workshop photos below</p>
         </div>
       </section>
 
